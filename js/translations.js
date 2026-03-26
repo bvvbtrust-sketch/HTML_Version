@@ -120,8 +120,10 @@ const translations = {
             roots: {
                 p1: "Parnapalli is a village situated on the banks of the Chitravati River in Pulivendula taluk of Kadapa district, Andhra Pradesh. In this village lived the late Sri Venkataramayya, a Shrotriya, Vedic scholar of the Velanadu tradition belonging to the Gautama Gotra, bearing the family name Valiveru.",
                 p2: "The family deity (Gṛha Daiva) of the Valiveru household is Sri Lakshmi Narasimha Swamy (Doddadalavatam, Madhugiri taluk, Karnataka). It is still a tradition to worship Sri Ramachandra Murthy as the cherished Iṣṭa Daiva within the Valiveru family.",
-                p3: "Sri Venkataramayya and Smt. Chayamma were blessed with five sons. He had two sisters—Smt. Sheshamma and Smt. Kamakshamma—and a younger brother Sri Narasayya. Sri Narasayya was later adopted by his uncle Sri Sitaramayya."
-            },
+                p3: "Sri Venkataramayya and Smt. Chayamma were blessed with five sons. He had two sisters—Smt. Sheshamma and Smt. Kamakshamma—and a younger brother Sri Narasayya. Sri Narasayya was later adopted by his uncle Sri Sitaramayya.",                
+                image_caption: "Original handwritten family tree of the Valiveru lineage.",
+             },
+            
             acharana: {
                 p1: "Sri Venkataramayya lived a life of simplicity and contentment despite material poverty. He studied the Vedas thoroughly and upheld the principles of Sanatana Dharma with sincerity and discipline through total Vedic conduct.",
                 p2: "His daily life followed a sacred rhythm: Trikala Sandhya, morning Panchayatana Puja, and Abhisheka. During afternoons, he would sit on the front porch and recite the Mahabharata, Bhagavata, and Ramayana, explaining the teachings to the villagers. Hospitality was abundant; many mahatmas traveling through the village found refuge in his home.",
@@ -278,8 +280,9 @@ const translations = {
             roots: {
                 p1: "అది ఆంధ్ర ప్రదేశ్ లోని కడపజిల్లా పులివెందుల తాలూకాలోని చిత్రావతి నది ఏటి ఒడ్డున పార్నపల్లి గ్రామం. అందు కీ.శే. వేంకటరామయ్య గారు అను శ్రోత్రియ, వైదిక, వెలనాటి వారు, గౌతమస గోత్రీకులు, వలివేరు ఇంటిపేరుగా గల బ్రాహ్మణుడు. వారి ఇంటి దేవుడు శ్రీ లక్ష్మీనరసింహస్వామి (దొడ్డదాళవటము, మధుగిరి తాలూకా, కర్ణాటక రాష్ట్రము). వలివేరు వంశమునకు ఇష్టదైవముగా శ్రీరామచంద్రమూర్తిని కొలుచుకొనుట ఇప్పటికినీ పరిపాటి.",
                 p2: "కీ.శే. వేంకటరామయ్య, ధర్మపత్ని కీ.శే. కుం.సౌ. ఛాయమ్మ దంపతులకు ఐదు మంది కుమారులు. కుమార్తెలు లేరు. ఆయనకు ఇద్దరు అక్కగారు కీ.శే. శేషమ్మ, కీ.శే. కుం.సౌ కామాక్షమ్మ, మరియు కీ.శే. నరసయ్యగారు తమ్ముడు.",
-                p3: "కీ.శే. నరసయ్య గారు కాలాంతరమున తన పినతండ్రి సీతారామయ్య గారికి దత్తపుత్రుడైనారు."
-            },
+                p3: "కీ.శే. నరసయ్య గారు కాలాంతరమున తన పినతండ్రి సీతారామయ్య గారికి దత్తపుత్రుడైనారు.",                
+                image_caption: "వలివేరు వంశానికి సంబంధించిన అసలు చేతిరాత వంశవృక్షం.",
+             },
             acharana: {
                 p1: "కీ.శే. వేంకటరామయ్యగారు సాంగోపాంగముగా వేదమునభ్యసించియు, గ్రామ పౌరోహిత్యము చేతనే పేదరికంలో తృప్తిగా జీవనమును కొనసాగించుచుండెడివారు. సనాతన ధర్మమును భక్తి శ్రద్ధలతో అనుసరించి సంపూర్ణ ఆచార వ్యవహారములతో జీవించారు.",
                 p2: "త్రికాల సంధ్య, ఉదయాన పంచాయతన పూజ అభిషేకాదులు, మధ్యాహ్న సమయంలో భారత, భాగవత, రామాయణాదులను ఇంటి బయట అరుగు మీద కూర్చుని గ్రామ ప్రజలకు అందున్న ధర్మములను, సనాతన జీవన విధానమును వివరించి చెప్పుచుండడివారు. అతిథులకు అభ్యాగతులకు కొరవ ఉండేది కాదు. ఆ కాలములో ఎంతోమంది మహనీయులు కాలినడకన ఆ గ్రామము మీదుగా వెళుతూ వీరి ఇంటిలో కొన్ని రోజులపాటు ఆథిత్యమును పొందెడివారు.",
