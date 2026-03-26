@@ -1,9 +1,6 @@
 backend:
-  name: github
-  repo: bvvbtrust-sketch/HTML_VERSION
+  name: git-gateway
   branch: main
-  base_url: https://api.netlify.com
-  site_id: 2a192287-5198-4ff4-ac80-cff08ed29e93 # Use the ID from your badge here
   auth_endpoint: /auth
 media_folder: "images"
 public_folder: "images"
