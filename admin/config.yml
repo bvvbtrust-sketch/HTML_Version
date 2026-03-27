@@ -1,6 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: bvvbtrust-sketch/HTML_VERSION
   branch: main
+  # Replace with your actual Vercel URL
+  base_url: https://bvvb-cms-auth.vercel.app
+  auth_endpoint: /auth
   media_folder: "images"
 public_folder: "images"
 
