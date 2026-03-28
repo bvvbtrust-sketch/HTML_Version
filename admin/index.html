@@ -4,31 +4,14 @@
   <meta charset="utf-8" />
   <title>Content Manager</title>
 
-  <!-- MUST be before CMS script -->
+  <!-- Step 1: disable auto init -->
   <script>
     window.CMS_MANUAL_INIT = true;
   </script>
-</head>
 
-<body>
-  <div id="nc-root"></div>
-
-  <!-- Load CMS -->
-  <script src="https://unpkg.com/decap-cms@3.11.0/dist/decap-cms.js"></script>
-
-  <!-- Load YAML parser -->
-  <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-
-  <!-- Manual init -->
-<script>
-  window.CMS_MANUAL_INIT = true;
-</script>
-
-<script src="https://unpkg.com/decap-cms@3.11.0/dist/decap-cms.js"></script>
-
-<script>
-  CMS.init({
-    config: {
+  <!-- Step 2: define config BEFORE CMS loads -->
+  <script>
+    window.CMS_CONFIG = {
       backend: {
         name: "github",
         repo: "bvvbtrust-sketch/HTML_VERSION",
@@ -54,8 +37,19 @@
           ]
         }
       ]
-    }
-  });
-</script>
+    };
+  </script>
+</head>
+
+<body>
+  <div id="nc-root"></div>
+
+  <!-- Step 3: load CMS -->
+  <script src="https://unpkg.com/decap-cms@3.11.0/dist/decap-cms.js"></script>
+
+  <!-- Step 4: init immediately -->
+  <script>
+    CMS.init({ config: window.CMS_CONFIG });
+  </script>
 </body>
 </html>
