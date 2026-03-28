@@ -2,67 +2,68 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
 
-  <!-- Disable automatic config loading -->
+  <!-- 1. Disable auto init -->
   <script>
     window.CMS_MANUAL_INIT = true;
+
+    // 2. Define config BEFORE CMS loads
+    window.CMS_CONFIG = {
+      backend: {
+        name: "github",
+        repo: "bvvbtrust-sketch/HTML_VERSION",
+        branch: "main",
+        base_url: "https://test2.bvvbtrust.org",
+        auth_endpoint: "auth",
+        site_domain: "test1.bvvbtrust.org"
+      },
+
+      media_folder: "images",
+      public_folder: "images",
+
+      collections: [
+        {
+          name: "website_content",
+          label: "Website Content",
+          delete: false,
+          editor: { preview: false },
+
+          files: [
+            {
+              label: "English Content",
+              name: "en_content",
+              file: "js/en.json",
+              fields: [
+                { label: "Trust Name", name: "trustName", widget: "string" },
+                { label: "Motto", name: "motto", widget: "string" }
+              ]
+            },
+            {
+              label: "Telugu Content",
+              name: "te_content",
+              file: "js/te.json",
+              fields: [
+                { label: "ట్రస్ట్ పేరు", name: "trustName", widget: "string" },
+                { label: "ధ్యేయం", name: "motto", widget: "string" }
+              ]
+            }
+          ]
+        }
+      ]
+    };
   </script>
 </head>
 
 <body>
   <div id="nc-root"></div>
 
-  <!-- Load Decap CMS -->
+  <!-- 3. Load CMS -->
   <script src="https://unpkg.com/decap-cms@3.11.0/dist/decap-cms.js"></script>
 
+  <!-- 4. Init immediately -->
   <script>
-    CMS.init({
-      config: {
-        backend: {
-          name: "github",
-          repo: "bvvbtrust-sketch/HTML_VERSION",
-          branch: "main",
-          base_url: "https://test2.bvvbtrust.org",
-          auth_endpoint: "auth",
-          site_domain: "test1.bvvbtrust.org"
-        },
-
-        media_folder: "images",
-        public_folder: "images",
-
-        collections: [
-          {
-            name: "website_content",
-            label: "Website Content",
-            delete: false,
-            editor: { preview: false },
-
-            files: [
-              {
-                label: "English Content",
-                name: "en_content",
-                file: "js/en.json",
-                fields: [
-                  { label: "Trust Name", name: "trustName", widget: "string" },
-                  { label: "Motto", name: "motto", widget: "string" }
-                ]
-              },
-              {
-                label: "Telugu Content",
-                name: "te_content",
-                file: "js/te.json",
-                fields: [
-                  { label: "ట్రస్ట్ పేరు", name: "trustName", widget: "string" },
-                  { label: "ధ్యేయం", name: "motto", widget: "string" }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    });
+    CMS.init({ config: window.CMS_CONFIG });
   </script>
 </body>
 </html>
