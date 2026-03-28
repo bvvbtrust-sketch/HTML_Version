@@ -3,7 +3,7 @@ backend:
   repo: bvvbtrust-sketch/HTML_VERSION
   branch: main
   base_url: https://test2.bvvbtrust.org # Use your actual Vercel URL here
-  auth_endpoint: /auth
+  auth_endpoint: auth
 
 # These two lines fix your specific error
 media_folder: "gallery/2025" # Where images will be saved in your repo
