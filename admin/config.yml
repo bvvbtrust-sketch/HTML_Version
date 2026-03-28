@@ -2,7 +2,7 @@ backend:
   name: github
   repo: bvvbtrust-sketch/HTML_VERSION
   branch: main
-  base_url: https://test2.bvvbtrust.org # Use your actual Vercel URL here
+  base_url: https://test2.bvvbtrust.org
   auth_endpoint: auth
 
 # These two lines fix your specific error
