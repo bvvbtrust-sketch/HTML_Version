@@ -2,28 +2,67 @@
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Content Manager</title>
+
+  <!-- Disable automatic config loading -->
+  <script>
+    window.CMS_MANUAL_INIT = true;
+  </script>
 </head>
+
 <body>
-  <!-- This div is required for Decap to anchor its UI -->
   <div id="nc-root"></div>
 
+  <!-- Load Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@3.11.0/dist/decap-cms.js"></script>
+
   <script>
-    // 1. Manually fetch the config from a non-standard name to avoid the 404 auto-lookup
-    fetch('./cms-config.json')
-      .then(response => response.json())
-      .then(configData => {
-        // 2. Load the CMS script ONLY after we have the config data
-        const script = document.createElement('script');
-        script.src = "https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js";
-        
-        script.onload = () => {
-          // 3. Initialize with our manual data
-          window.CMS.init({ config: configData });
-        };
-        document.head.appendChild(script);
-      })
-      .catch(err => console.error("Config fetch failed:", err));
+    CMS.init({
+      config: {
+        backend: {
+          name: "github",
+          repo: "bvvbtrust-sketch/HTML_VERSION",
+          branch: "main",
+          base_url: "https://test2.bvvbtrust.org",
+          auth_endpoint: "auth",
+          site_domain: "test1.bvvbtrust.org"
+        },
+
+        media_folder: "images",
+        public_folder: "images",
+
+        collections: [
+          {
+            name: "website_content",
+            label: "Website Content",
+            delete: false,
+            editor: { preview: false },
+
+            files: [
+              {
+                label: "English Content",
+                name: "en_content",
+                file: "js/en.json",
+                fields: [
+                  { label: "Trust Name", name: "trustName", widget: "string" },
+                  { label: "Motto", name: "motto", widget: "string" }
+                ]
+              },
+              {
+                label: "Telugu Content",
+                name: "te_content",
+                file: "js/te.json",
+                fields: [
+                  { label: "ట్రస్ట్ పేరు", name: "trustName", widget: "string" },
+                  { label: "ధ్యేయం", name: "motto", widget: "string" }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    });
   </script>
 </body>
 </html>
