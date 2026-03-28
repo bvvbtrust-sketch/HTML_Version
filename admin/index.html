@@ -4,25 +4,37 @@
   <meta charset="utf-8" />
   <title>Content Manager</title>
 
+  <!-- MUST be before CMS script -->
   <script>
     window.CMS_MANUAL_INIT = true;
   </script>
 </head>
+
 <body>
   <div id="nc-root"></div>
 
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Load CMS -->
+  <script src="https://unpkg.com/decap-cms@3.11.0/dist/decap-cms.js"></script>
 
+  <!-- Load YAML parser -->
   <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 
+  <!-- Manual init -->
   <script>
     fetch('/admin/config.yaml')
-      .then(res => res.text())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Config not found");
+        }
+        return res.text();
+      })
       .then(text => {
         const config = jsyaml.load(text);
         CMS.init({ config });
       })
-      .catch(err => console.error("Config load error:", err));
+      .catch(err => {
+        console.error("Config load failed:", err);
+      });
   </script>
 </body>
 </html>
