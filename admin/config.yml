@@ -22,33 +22,33 @@
           "fields": [
             { "label": "Trust Name", "name": "trustName", "widget": "string" },
             { "label": "Motto", "name": "motto", "widget": "string" },
-            {
-              "label": "Navigation Menu",
-              "name": "nav",
-              "widget": "object",
-              "fields": [
-                { "label": "Home", "name": "home", "widget": "string" },
-                { "label": "About", "name": "about", "widget": "string" },
-                { "label": "Programs", "name": "programs", "widget": "string" },
-                { "label": "Events", "name": "events", "widget": "string" },
-                { "label": "Contact", "name": "contact", "widget": "string" },
-                { "label": "Donate", "name": "donate", "widget": "string" }
-              ]
-            },
-            {
-              "label": "Hero Section",
-              "name": "hero",
-              "widget": "object",
-              "fields": [
-                { "label": "Welcome Text", "name": "welcome", "widget": "string" },
-                { "label": "Main Description", "name": "desc1", "widget": "text" },
-                { "label": "Sanskrit Shloka", "name": "shloka1", "widget": "text" },
-                { "label": "Shloka Caption", "name": "shloka1_caption", "widget": "string" },
-                { "label": "Shloka Meaning", "name": "meaning1", "widget": "text" },
-                { "label": "History Button", "name": "btnHistory", "widget": "string" },
-                { "label": "Learn More Button", "name": "btnLearn", "widget": "string" }
-              ]
-            }
+            { "label": "Navigation Menu", "name": "nav", "widget": "object", "fields": [
+              { "label": "Home", "name": "home", "widget": "string" },
+              { "label": "About", "name": "about", "widget": "string" },
+              { "label": "Programs", "name": "programs", "widget": "string" },
+              { "label": "Events", "name": "events", "widget": "string" },
+              { "label": "Contact", "name": "contact", "widget": "string" },
+              { "label": "Donate", "name": "donate", "widget": "string" }
+            ]},
+            { "label": "Hero Section", "name": "hero", "widget": "object", "fields": [
+              { "label": "Welcome Text", "name": "welcome", "widget": "string" },
+              { "label": "Main Description", "name": "desc1", "widget": "text" },
+              { "label": "Sanskrit Shloka", "name": "shloka1", "widget": "text" },
+              { "label": "Shloka Meaning", "name": "meaning1", "widget": "text" }
+            ]}
+          ]
+        },
+        {
+          "label": "Telugu Content (తెలుగు)",
+          "name": "te_content",
+          "file": "js/te.json",
+          "fields": [
+            { "label": "ట్రస్ట్ పేరు", "name": "trustName", "widget": "string" },
+            { "label": "ధ్యేయం", "name": "motto", "widget": "string" },
+            { "label": "మెనూ", "name": "nav", "widget": "object", "fields": [
+              { "label": "హోమ్", "name": "home", "widget": "string" },
+              { "label": "మా గురించి", "name": "about", "widget": "string" }
+            ]}
           ]
         }
       ]
