@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://test2.bvvbtrust.org
   auth_endpoint: auth
+  site_domain: https://test1.bvvbtrust.org
 
 media_folder: "images"
 public_folder: "images"
