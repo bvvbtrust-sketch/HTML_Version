@@ -1,22 +1,22 @@
-backend:
-  name: github
-  repo: bvvbtrust-sketch/HTML_VERSION
-  branch: main
-  base_url: https://test2.bvvbtrust.org
-  auth_endpoint: auth
-
-# These two lines fix your specific error
-media_folder: "gallery/2025" # Where images will be saved in your repo
-public_folder: "gallery/2025" # The path used in your HTML <img> tags
-
-# Decap CMS also requires at least one "Collection" to load
-collections:
-  - name: "pages"
-    label: "Pages"
-    files:
-      - label: "English Translations"
-        name: "en_json"
-        file: "js/en.json"
-        fields:
-          - { label: "Trust Name", name: "trustName", widget: "string" }
-          - { label: "Hero Shloka", name: "hero.shloka1", widget: "text" }
+{
+  "backend": {
+    "name": "github",
+    "repo": "owner/repo",
+    "branch": "main",
+    "base_url": "https://test2.bvvbtrust.org",
+    "auth_endpoint": "auth"
+  },
+  "media_folder": "assets/uploads",
+  "collections": [
+    {
+      "name": "posts",
+      "label": "Posts",
+      "folder": "_posts",
+      "create": true,
+      "fields": [
+        { "label": "Title", "name": "title", "widget": "string" },
+        { "label": "Body", "name": "body", "widget": "markdown" }
+      ]
+    }
+  ]
+}
