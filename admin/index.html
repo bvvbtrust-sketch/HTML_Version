@@ -1,14 +1,28 @@
-<script>
-  window.CMS_MANUAL_INIT = true;
-</script>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Content Manager</title>
 
-<script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    window.CMS_MANUAL_INIT = true;
+  </script>
+</head>
+<body>
+  <div id="nc-root"></div>
 
-<script>
-  fetch('/admin/config.yaml')
-    .then(res => res.text())
-    .then(text => {
-      const config = jsyaml.load(text);
-      CMS.init({ config });
-    });
-</script>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script src="https://unpkg.com/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+
+  <script>
+    fetch('/admin/config.yaml')
+      .then(res => res.text())
+      .then(text => {
+        const config = jsyaml.load(text);
+        CMS.init({ config });
+      })
+      .catch(err => console.error("Config load error:", err));
+  </script>
+</body>
+</html>
