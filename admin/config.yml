@@ -2,7 +2,6 @@ backend:
   name: github
   repo: bvvbtrust-sketch/HTML_VERSION
   branch: main
-  # Pointing to your Node.js proxy on test2
   base_url: https://test2.bvvbtrust.org
   auth_endpoint: auth
 
@@ -22,7 +21,6 @@ collections:
         fields:
           - { label: "Trust Name", name: "trustName", widget: "string" }
           - { label: "Motto", name: "motto", widget: "string" }
-          
           - label: "Navigation Menu"
             name: "nav"
             widget: "object"
@@ -33,7 +31,6 @@ collections:
               - { label: "Events", name: "events", widget: "string" }
               - { label: "Contact", name: "contact", widget: "string" }
               - { label: "Donate", name: "donate", widget: "string" }
-
           - label: "Hero Section"
             name: "hero"
             widget: "object"
@@ -45,7 +42,6 @@ collections:
               - { label: "Shloka Meaning", name: "meaning1", widget: "text" }
               - { label: "History Button", name: "btnHistory", widget: "string" }
               - { label: "Learn More Button", name: "btnLearn", widget: "string" }
-
           - label: "About Section"
             name: "about"
             widget: "object"
@@ -60,7 +56,6 @@ collections:
               - { label: "Vision Description", name: "visionDesc", widget: "text" }
               - { label: "Mission Title", name: "missionTitle", widget: "string" }
               - { label: "Mission List Items", name: "missionList", widget: "list" }
-
           - label: "Programs Section"
             name: "programs"
             widget: "object"
@@ -95,7 +90,6 @@ collections:
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Description", name: "desc", widget: "text" }
                   - { label: "Features List", name: "items", widget: "list" }
-
           - label: "Events & Celebrations"
             name: "events"
             widget: "object"
@@ -109,7 +103,6 @@ collections:
                 fields:
                   - { label: "Event Name", name: "name", widget: "string" }
                   - { label: "Date", name: "date", widget: "string" }
-
           - label: "Contact Section"
             name: "contact"
             widget: "object"
@@ -123,7 +116,6 @@ collections:
               - { label: "Call Label", name: "call", widget: "string" }
               - { label: "Email Label", name: "email", widget: "string" }
               - { label: "Send Button Text", name: "btn", widget: "string" }
-
           - label: "Donate Section"
             name: "donate"
             widget: "object"
@@ -133,7 +125,6 @@ collections:
               - { label: "Description 1", name: "desc1", widget: "text" }
               - { label: "Description 2", name: "desc2", widget: "text" }
               - { label: "Description 3", name: "desc3", widget: "text" }
-
           - label: "Footer Section"
             name: "footer"
             widget: "object"
@@ -144,7 +135,6 @@ collections:
               - { label: "Quick Links Title", name: "quickLinksTitle", widget: "string" }
               - { label: "Connect Title", name: "connectTitle", widget: "string" }
               - { label: "Copyright Text", name: "copyright", widget: "string" }
-
           - label: "History Page"
             name: "history"
             widget: "object"
@@ -168,11 +158,133 @@ collections:
         fields:
           - { label: "ట్రస్ట్ పేరు", name: "trustName", widget: "string" }
           - { label: "ధ్యేయం", name: "motto", widget: "string" }
-          
           - label: "మెనూ (Navigation)"
             name: "nav"
             widget: "object"
             fields:
               - { label: "హోమ్", name: "home", widget: "string" }
               - { label: "మా గురించి", name: "about", widget: "string" }
-              -
+              - { label: "కార్యక్రమాలు", name: "programs", widget: "string" }
+              - { label: "వేడుకలు", name: "events", widget: "string" }
+              - { label: "సంప్రదించండి", name: "contact", widget: "string" }
+              - { label: "విరాళాలు", name: "donate", widget: "string" }
+          - label: "హీరో విభాగం (Hero)"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "స్వాగతం", name: "welcome", widget: "string" }
+              - { label: "వివరణ", name: "desc1", widget: "text" }
+              - { label: "శ్లోకం", name: "shloka1", widget: "text" }
+              - { label: "శ్లోక శీర్షిక", name: "shloka1_caption", widget: "string" }
+              - { label: "భావం", name: "meaning1", widget: "text" }
+              - { label: "చరిత్ర బటన్", name: "btnHistory", widget: "string" }
+              - { label: "మరింత సమాచారం", name: "btnLearn", widget: "string" }
+          - label: "మా గురించి (About)"
+            name: "about"
+            widget: "object"
+            fields:
+              - { label: "ట్యాగ్", name: "tag", widget: "string" }
+              - { label: "శీర్షిక", name: "title", widget: "string" }
+              - { label: "వివరణ", name: "desc", widget: "text" }
+              - { label: "చరిత్ర లింక్ టెక్స్ట్", name: "historyLink", widget: "string" }
+              - { label: "వారసత్వం", name: "heritageTitle", widget: "string" }
+              - { label: "వారసత్వ వివరణ", name: "heritageDesc", widget: "text" }
+              - { label: "సంకల్పం శీర్షిక", name: "visionTitle", widget: "string" }
+              - { label: "సంకల్ప వివరణ", name: "visionDesc", widget: "text" }
+              - { label: "ధ్యేయం శీర్షిక", name: "missionTitle", widget: "string" }
+              - { label: "లక్ష్యాల జాబితా", name: "missionList", widget: "list" }
+          - label: "కార్యక్రమాలు (Programs)"
+            name: "programs"
+            widget: "object"
+            fields:
+              - { label: "ట్యాగ్", name: "tag", widget: "string" }
+              - { label: "శీర్షిక", name: "title", widget: "string" }
+              - label: "కార్యక్రమం 1"
+                name: "p1"
+                widget: "object"
+                fields:
+                  - { label: "శీర్షిక", name: "title", widget: "string" }
+                  - { label: "వివరణ", name: "desc", widget: "text" }
+                  - { label: "అంశాలు", name: "items", widget: "list" }
+              - label: "కార్యక్రమం 2"
+                name: "p2"
+                widget: "object"
+                fields:
+                  - { label: "శీర్షిక", name: "title", widget: "string" }
+                  - { label: "వివరణ", name: "desc", widget: "text" }
+                  - { label: "అంశాలు", name: "items", widget: "list" }
+              - label: "కార్యక్రమం 3"
+                name: "p3"
+                widget: "object"
+                fields:
+                  - { label: "శీర్షిక", name: "title", widget: "string" }
+                  - { label: "వివరణ", name: "desc", widget: "text" }
+                  - { label: "అంశాలు", name: "items", widget: "list" }
+              - label: "కార్యక్రమం 4"
+                name: "p4"
+                widget: "object"
+                fields:
+                  - { label: "శీర్షిక", name: "title", widget: "string" }
+                  - { label: "వివరణ", name: "desc", widget: "text" }
+                  - { label: "అంశాలు", name: "items", widget: "list" }
+          - label: "వేడుకలు (Events)"
+            name: "events"
+            widget: "object"
+            fields:
+              - { label: "ట్యాగ్", name: "tag", widget: "string" }
+              - { label: "శీర్షిక", name: "title", widget: "string" }
+              - { label: "గ్యాలరీ టెక్స్ట్", name: "viewGallery", widget: "string" }
+              - label: "వేడుకల జాబితా"
+                name: "event_items"
+                widget: "list"
+                fields:
+                  - { label: "వేడుక పేరు", name: "name", widget: "string" }
+                  - { label: "తేదీ", name: "date", widget: "string" }
+          - label: "సంప్రదించండి (Contact)"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "ట్యాగ్", name: "tag", widget: "string" }
+              - { label: "శీర్షిక", name: "title", widget: "string" }
+              - { label: "కార్యాలయ లేబుల్", name: "office", widget: "string" }
+              - { label: "కార్యాలయ చిరునామా", name: "officeAddr", widget: "text" }
+              - { label: "ఆలయ లేబుల్", name: "temple", widget: "string" }
+              - { label: "ఆలయ చిరునామా", name: "templeAddr", widget: "text" }
+              - { label: "ఫోన్ లేబుల్", name: "call", widget: "string" }
+              - { label: "ఈమెయిల్ లేబుల్", name: "email", widget: "string" }
+              - { label: "బటన్ టెక్స్ట్", name: "btn", widget: "string" }
+          - label: "విరాళాలు (Donate)"
+            name: "donate"
+            widget: "object"
+            fields:
+              - { label: "ట్యాగ్", name: "tag", widget: "string" }
+              - { label: "శీర్షిక", name: "title", widget: "string" }
+              - { label: "వివరణ 1", name: "desc1", widget: "text" }
+              - { label: "వివరణ 2", name: "desc2", widget: "text" }
+              - { label: "వివరణ 3", name: "desc3", widget: "text" }
+          - label: "ఫుటర్ (Footer)"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "ట్రస్ట్ గురించి", name: "aboutTitle", widget: "string" }
+              - { label: "వివరణ", name: "aboutDesc", widget: "text" }
+              - { label: "రిజిస్ట్రేషన్ నెం", name: "regNo", widget: "string" }
+              - { label: "లింకుల శీర్షిక", name: "quickLinksTitle", widget: "string" }
+              - { label: "కనెక్ట్ శీర్షిక", name: "connectTitle", widget: "string" }
+              - { label: "కాపీరైట్", name: "copyright", widget: "string" }
+          - label: "చరిత్ర (History)"
+            name: "history"
+            widget: "object"
+            fields:
+              - { label: "పేజీ శీర్షిక", name: "title", widget: "string" }
+              - { label: "బిరుదు", name: "epithet", widget: "string" }
+              - { label: "మూలాలు పేరా 1", name: "roots.p1", widget: "text" }
+              - { label: "మూలాలు పేరా 2", name: "roots.p2", widget: "text" }
+              - { label: "మూలాలు పేరా 3", name: "roots.p3", widget: "text" }
+              - { label: "వంశవృక్షం క్యాప్షన్", name: "roots.image_caption", widget: "string" }
+              - { label: "ఆచరణ పేరా 1", name: "acharana.p1", widget: "text" }
+              - { label: "ఆచరణ పేరా 2", name: "acharana.p2", widget: "text" }
+              - { label: "ఆచరణ పేరా 3", name: "acharana.p3", widget: "text" }
+              - { label: "బ్యాంకు వివరాలు (p4)", name: "vision.p4", widget: "text" }
+              - { label: "శ్లోకం", name: "vision.shloka", widget: "string" }
+              - { label: "భావం", name: "vision.meaning", widget: "string" }
