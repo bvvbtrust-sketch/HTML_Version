@@ -12,6 +12,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Noto+Serif+Telugu:wght@400;600;700&family=Tiro+Telugu:ital@0;1&family=Varela+Round&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* Responsive Video Container */
+        .video-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            background: #000;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .video-label {
+            text-align: center;
+            margin-top: 1rem;
+            color: #ffd085;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+    </style>
 </head>
 <body>
 
@@ -32,33 +65,7 @@
             </div>
         </div>
 
-        <!-- Gallery Grid -->
-        <div class="gallery-page-container">
-            <div class="gallery-page-grid">
-                <!-- Add/Edit image tags here for the 2025 events -->
-                <div class="gallery-item"><img src="gallery/2025/photo_1.jpeg" alt="2025 Event Photo 1" loading="lazy"></div>
-                <div class="gallery-item"><img src="gallery/2025/photo_2.jpeg" alt="2025 Event Photo 2" loading="lazy"></div>
-                <div class="gallery-item"><img src="gallery/2025/photo_3.jpeg" alt="2025 Event Photo 3" loading="lazy"></div>
-                <div class="gallery-item"><img src="gallery/2025/photo_4.jpeg" alt="2025 Event Photo 4" loading="lazy"></div>
-                <div class="gallery-item"><img src="gallery/2025/photo_5.jpeg" alt="2025 Event Photo 5" loading="lazy"></div>
-                <div class="gallery-item"><img src="gallery/2025/photo_6.jpeg" alt="2025 Event Photo 6" loading="lazy"></div>
-                <div class="gallery-item"><img src="gallery/2025/photo_7.jpeg" alt="2025 Event Photo 7" loading="lazy"></div>
-                <div class="gallery-item"><img src="gallery/2025/photo_8.jpeg" alt="2025 Event Photo 8" loading="lazy"></div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close" aria-label="Close">&times;</span>
-        <button class="lightbox-prev" aria-label="Previous image">&#10094;</button>
-        <img class="lightbox-content" id="lightbox-img" alt="Enlarged gallery view">
-        <button class="lightbox-next" aria-label="Next image">&#10095;</button>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
-
-    <script src="js/main.js"></script>
-</body>
-</html>
+        <!-- NEW: Featured Video Section -->
+        <section class="video-container">
+            <div class="video-wrapper">
+                <
