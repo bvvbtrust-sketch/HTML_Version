@@ -236,5 +236,31 @@
 
     <button id="scrollToTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
     <script src="js/main.js"></script>
+    <script>
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("tree-slide");
+    const dots = document.getElementsByClassName("dot");
+
+    function moveSlide(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        if (n >= slides.length) {slideIndex = 0}
+        if (n < 0) {slideIndex = slides.length - 1}
+        
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+            dots[i].classList.remove("active");
+        }
+        
+        slides[slideIndex].classList.add("active");
+        dots[slideIndex].classList.add("active");
+    }
+</script>
 </body>
 </html>
