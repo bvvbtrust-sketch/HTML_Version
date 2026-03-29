@@ -52,10 +52,40 @@
     };
 
     // 3. Handshake Debugger (Check your console to see if the popup talks to this window)
-    window.addEventListener("message", (event) => {
-      console.log("Handshake received from:", event.origin);
-      console.log("Data payload:", event.data);
-    }, false);
+    window.addEventListener("message", async (event) => {
+    // Only listen to the proxy
+    if (event.origin === "https://test2.bvvbtrust.org" && event.data.includes("authorization:github:success")) {
+      
+      const payload = JSON.parse(event.data.replace("authorization:github:success:", ""));
+      const token = payload.token;
+      
+      console.log("✅ Token received! Testing GitHub API access behind the scenes...");
+      
+      try {
+        // Test 1: Can we read the user profile?
+        const userRes = await fetch("https://api.github.com/user", {
+          headers: { Authorization: `token ${token}` }
+        });
+        console.log("GitHub User Check:", userRes.status, await userRes.json());
+        
+        // Test 2: Can we access the specific repository?
+        const repoRes = await fetch("https://api.github.com/repos/bvvbtrust-sketch/HTML_VERSION", {
+          headers: { Authorization: `token ${token}` }
+        });
+        const repoData = await repoRes.json();
+        console.log("GitHub Repo Check:", repoRes.status, repoData);
+        
+        // Check for push permissions
+        if (repoData.permissions && repoData.permissions.push) {
+          console.log("🟩 SUCCESS: You have push access! If Decap isn't loading, check for the site_domain bug.");
+        } else {
+          console.error("🟥 ERROR: You DO NOT have push access to bvvbtrust-sketch/HTML_VERSION. Decap CMS is silently aborting the login.");
+        }
+      } catch (err) {
+        console.error("API Test Failed:", err);
+      }
+    }
+  }, false);
   </script>
 </head>
 
