@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="css/style.css">
     
     <style>
+        /* Language-specific caption toggling */
+        /* These rules hide/show the correct span based on the <html> lang attribute */
+        html[lang="en"] .lang-te { display: none; }
+        html[lang="te"] .lang-en { display: none; }
+
         /* Family Tree Carousel Styles */
         .tree-carousel-container {
             position: relative;
@@ -45,6 +50,7 @@
             margin-top: 15px;
             padding: 0 40px;
             line-height: 1.4;
+            min-height: 2.5em; /* Prevents layout jump */
         }
         .carousel-btn {
             position: absolute;
@@ -120,16 +126,21 @@
                     <p data-i18n="history.roots.p2"></p>
                     <p data-i18n="history.roots.p3"></p>
                     
-                    <!-- Family Tree Carousel -->
                     <div class="tree-carousel-container">
                         <div class="tree-carousel-wrapper">
                             <div class="tree-slide active">
                                 <img src="images/family_tree_handwritten.jpeg" alt="Handwritten Family Tree">
-                                <p class="image-caption" data-i18n="history.roots.image_caption_handwritten">The Handwritten family tree mentioned in the records.</p>
+                                <p class="image-caption">
+                                    <span class="lang-en">The Handwritten family tree mentioned in the records.</span>
+                                    <span class="lang-te">రికార్డులలో పేర్కొన్న చేతితో వ్రాసిన వంశవృక్షం.</span>
+                                </p>
                             </div>
                             <div class="tree-slide">
                                 <img src="images/family_tree_typed.jpeg" alt="Typed Family Tree">
-                                <p class="image-caption" data-i18n="history.roots.image_caption_typed">The Typed version of the family tree for clarity.</p>
+                                <p class="image-caption">
+                                    <span class="lang-en">The Typed version of the family tree for clarity.</span>
+                                    <span class="lang-te">స్పష్టత కోసం టైప్ చేయబడిన వంశవృక్షం.</span>
+                                </p>
                             </div>
                         </div>
                         
@@ -215,8 +226,7 @@
                 <div class="footer-box">
                     <h4 data-i18n="footer.connectTitle"></h4>
                     <div style="display: flex; gap: 15px;">
-                        <!-- Social SVG Icons Omitted for Brevity -->
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
