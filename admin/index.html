@@ -12,38 +12,23 @@
         repo: "bvvbtrust-sketch/HTML_VERSION",
         branch: "main",
         base_url: "https://test2.bvvbtrust.org",
-        auth_endpoint: "auth",
-        site_domain: "test1.bvvbtrust.org" // Explicitly set the domain
+        auth_endpoint: "auth"
       },
-      // 🚀 The "Nuclear" fix for toArray errors
-      load_config_file: false, 
       media_folder: "images",
       public_folder: "images",
       collections: [
         {
-          name: "content_files",
-          label: "Website Content",
-          // We use 'files' but give it a description to help React state
-          description: "Manage English and Telugu site data",
-          files: [
-            {
-              label: "English Content",
-              name: "en_data",
-              file: "js/en.json",
-              fields: [
-                { label: "Trust Name", name: "trustName", widget: "string" },
-                { label: "Motto", name: "motto", widget: "string" }
-              ]
-            },
-            {
-              label: "Telugu Content",
-              name: "te_data",
-              file: "js/te.json",
-              fields: [
-                { label: "Trust Name", name: "trustName", widget: "string" },
-                { label: "Motto", name: "motto", widget: "string" }
-              ]
-            }
+          name: "languages",
+          label: "Site Languages",
+          // 🚀 SWITCH TO FOLDER MODE: Decap will look inside the 'js' folder
+          folder: "js", 
+          extension: "json",
+          format: "json",
+          create: false, // Prevent creating new files for now
+          slug: "{{slug}}",
+          fields: [
+            { label: "Trust Name", name: "trustName", widget: "string" },
+            { label: "Motto", name: "motto", widget: "string" }
           ]
         }
       ]
@@ -55,8 +40,6 @@
   <script src="https://unpkg.com/decap-cms@^3.11.0/dist/decap-cms.js"></script>
   <script>
     if (window.CMS) {
-      // One last trick: We clear the internal state before init
-      localStorage.removeItem("netlify-cms-user"); 
       window.CMS.init({ config: window.CMS_CONFIG });
     }
   </script>
