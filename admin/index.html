@@ -6,28 +6,59 @@
   <title>Content Manager</title>
 
   <script>
-    // 🔥 THE VAULT REDIRECT LOGIC
-    // 1. If we are inside the popup, grab the token from the URL and save it
+    // 🔥 1. THE POPUP LOGIC (Extract token -> Fetch Profile -> Save -> Close)
     const hash = window.location.hash;
     if (hash.includes("access_token=")) {
       const token = new URLSearchParams(hash.substring(1)).get("access_token");
       
-      // Save it using both the new and legacy keys just to be completely safe
-      const userObj = JSON.stringify({ token: token, backendName: "github" });
-      localStorage.setItem("decap-cms-user", userObj);
-      localStorage.setItem("netlify-cms-user", userObj);
-      
-      // Close the popup!
-      window.close();
+      // Fetch the user's profile from GitHub before saving!
+      fetch("https://api.github.com/user", {
+        headers: { Authorization: "token " + token }
+      })
+      .then(res => res.json())
+      .then(userData => {
+        // Build the EXACT complete profile Decap demands
+        const decapUser = {
+          token: token,
+          backendName: "github",
+          name: userData.name || userData.login,
+          login: userData.login,
+          avatar_url: userData.avatar_url
+        };
+        
+        // Save to vault
+        localStorage.setItem("decap-cms-user", JSON.stringify(decapUser));
+        localStorage.setItem("netlify-cms-user", JSON.stringify(decapUser));
+        
+        // Tell the main window we are done, then close!
+        localStorage.setItem("cms_login_success", Date.now().toString());
+        window.close();
+      })
+      .catch(err => {
+        console.error("Failed to fetch profile", err);
+        document.body.innerHTML = "<h1>Failed to fetch GitHub profile. Check console.</h1>";
+      });
     }
 
-    // 2. If we are in the main window, listen for the vault to update
-    window.addEventListener("storage", (event) => {
-      if (event.key === "decap-cms-user" || event.key === "netlify-cms-user") {
-        console.log("Token detected in vault! Reloading into dashboard...");
-        window.location.reload();
-      }
-    });
+    // 🔥 2. THE MAIN WINDOW LOGIC (Wait for the popup to finish, then reload)
+    if (!window.location.hash.includes("access_token=")) {
+      // Listen for the popup updating the vault
+      window.addEventListener("storage", (event) => {
+        if (event.key === "cms_login_success") {
+          console.log("Vault loaded! Booting dashboard...");
+          window.location.reload();
+        }
+      });
+
+      // Backup Watcher: Check the vault every 1 second in case the event listener fails
+      let watchVault = setInterval(() => {
+        if (localStorage.getItem("cms_login_success")) {
+          clearInterval(watchVault);
+          localStorage.removeItem("cms_login_success"); // Clean up
+          window.location.reload();
+        }
+      }, 1000);
+    }
 
     // --- STANDARD CONFIG ---
     window.CMS_MANUAL_INIT = true;
@@ -65,7 +96,10 @@
   <script src="https://unpkg.com/decap-cms@^3.11.0/dist/decap-cms.js"></script>
   
   <script>
+    // Only boot Decap if we are in the main window (not the popup)
     if (window.CMS && !window.location.hash.includes("access_token=")) {
+      // Clean up our trigger key before booting
+      localStorage.removeItem("cms_login_success"); 
       window.CMS.init({ config: window.CMS_CONFIG });
     }
   </script>
