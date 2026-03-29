@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
-
-  <script>
+<script>
     // 1. Configuration
     window.CMS_MANUAL_INIT = true;
     window.CMS_CONFIG = {
@@ -48,40 +41,45 @@
       ]
     };
 
-    // 2. The Bulletproof Auto-Login Listener
-    window.addEventListener("message", (event) => {
-      // Check if the message is from our proxy and has the success string
+    // 2. The "Perfect Profile" Auto-Login Listener
+    window.addEventListener("message", async (event) => {
       if (event.origin === "https://test2.bvvbtrust.org" && typeof event.data === "string" && event.data.includes("authorization:github:success")) {
         
-        console.log("Intercepted valid token! Forcing CMS login...");
+        console.log("1. Intercepted valid token! Fetching GitHub profile...");
         
-        // Extract the token payload
-        const jsonString = event.data.replace("authorization:github:success:", "");
-        const payload = JSON.parse(jsonString);
+        // Extract the token
+        const payload = JSON.parse(event.data.replace("authorization:github:success:", ""));
+        const token = payload.token;
         
-        // Save it exactly where Decap CMS looks for it
-        localStorage.setItem("decap-cms-user", JSON.stringify({
-          token: payload.token,
-          backendName: "github"
-        }));
-        
-        // Refresh the page so Decap CMS boots up already logged in
-        window.location.reload();
+        try {
+          // Ask GitHub for the user's details (Decap requires this to build the UI)
+          const userRes = await fetch("https://api.github.com/user", {
+            headers: { Authorization: `token ${token}` }
+          });
+          const userData = await userRes.json();
+          
+          console.log("2. Profile fetched:", userData.login);
+
+          // Build the EXACT object Decap CMS looks for
+          const decapUser = {
+            token: token,
+            backendName: "github",
+            name: userData.name || userData.login,
+            login: userData.login,
+            avatar_url: userData.avatar_url
+          };
+          
+          // Save it to the vault
+          localStorage.setItem("decap-cms-user", JSON.stringify(decapUser));
+          
+          console.log("3. Perfect profile saved! Reloading into dashboard...");
+          
+          // Reload the page to boot up Decap CMS logged in
+          window.location.reload();
+
+        } catch (err) {
+          console.error("Failed to fetch user profile from GitHub:", err);
+        }
       }
     }, false);
   </script>
-</head>
-
-<body>
-  <div id="nc-root"></div>
-
-  <script src="https://unpkg.com/decap-cms@^3.11.0/dist/decap-cms.js"></script>
-
-  <script>
-    // 3. Initialize the CMS
-    if (window.CMS) {
-      CMS.init({ config: window.CMS_CONFIG });
-    }
-  </script>
-</body>
-</html>
