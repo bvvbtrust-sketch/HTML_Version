@@ -7,13 +7,14 @@
   <script>
     window.CMS_MANUAL_INIT = true;
     window.CMS_CONFIG = {
-      backend: {
-        name: "github",
-        repo: "bvvbtrust-sketch/HTML_VERSION",
-        branch: "main",
-        base_url: "https://test2.bvvbtrust.org",
-        auth_endpoint: "auth"
-      },
+backend: {
+  name: "github",
+  repo: "bvvbtrust-sketch/HTML_VERSION",
+  branch: "main",
+  base_url: "https://test2.bvvbtrust.org",
+  auth_endpoint: "auth",
+  use_graphql: false // 🚀 FORCE DISABLE GRAPHQL
+},
       media_folder: "images",
       public_folder: "images",
       collections: [
