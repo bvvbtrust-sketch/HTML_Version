@@ -2868,5 +2868,45 @@
       }, 0);
     });
   </script>
+  <script>
+  // Function to toggle all sections
+  function toggleAllSections() {
+    // Decap CMS uses buttons with aria-expanded or summary tags for collapsing
+    const toggleButtons = document.querySelectorAll('button[aria-label="expand"], button[aria-label="collapse"], .nc-controlPane-widget summary');
+    
+    toggleButtons.forEach(button => {
+      button.click();
+    });
+  }
+
+  // Inject the button into the UI once the CMS is ready
+  const observer = new MutationObserver((mutations) => {
+    const editorPane = document.querySelector('.nc-entryEditor-controlPane');
+    if (editorPane && !document.getElementById('custom-toggle-btn')) {
+      const btn = document.createElement('button');
+      btn.id = 'custom-toggle-btn';
+      btn.innerText = '↕ Toggle All Sections';
+      btn.style = `
+        position: sticky;
+        top: 10px;
+        z-index: 999;
+        margin: 10px;
+        padding: 8px 15px;
+        background: #3d2b1f;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: sans-serif;
+        font-weight: bold;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      `;
+      btn.onclick = toggleAllSections;
+      editorPane.prepend(btn);
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+</script>
 </body>
 </html>
