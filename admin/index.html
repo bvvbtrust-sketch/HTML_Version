@@ -35,7 +35,7 @@
               {
                 name: "settings",
                 label: "Site Content",
-                editor: { preview: false },
+                editor: { preview: true },
                 files: [
                   {
                     label: "English Content",
@@ -191,14 +191,14 @@
                                                                         "label": "Missiontitle",
                                                                         "widget": "string"
                                                       },
-{
-  "name": "missionList",
-  "label": "Missionlist",
-  "widget": "list",
-  "collapsed": false, // Start open
-  "summary": "{{fields.item}}", // Displays the text even when closed
-  "field": { "name": "item", "widget": "string" }
-}
+                                                      {
+                                                      "name": "missionList",
+                                                      "label": "Missionlist",
+                                                      "widget": "list",
+                                                      "collapsed": false, // Start open
+                                                      "summary": "{{fields.item}}", // Displays the text even when closed
+                                                      "field": { "name": "item", "widget": "string" }
+                                                      }
                                     ]
                   },
                   {
@@ -2844,7 +2844,42 @@
         }
             ]
           }
-        });
+        })
+        <script>
+  // Define the Preview Component
+  var SitePreview = createClass({
+    render: function() {
+      const entry = this.props.entry;
+      const data = entry.getIn(['data']).toJS(); // This gets your en.json data
+
+      return h('div', { style: { padding: '20px', fontFamily: 'Montserrat, sans-serif' } },
+        h('h1', { style: { color: '#3d2b1f', borderBottom: '2px solid #ffd085' } }, data.trustName || "Trust Name"),
+        h('p', { style: { fontStyle: 'italic', color: '#666' } }, data.motto),
+        
+        h('section', { style: { marginTop: '30px', padding: '15px', background: '#f9f9f9', borderRadius: '8px' } },
+          h('h2', {}, "Hero Section Preview"),
+          h('p', { style: { fontWeight: 'bold' } }, data.hero?.welcome),
+          h('p', {}, data.hero?.desc1)
+        ),
+
+        h('section', { style: { marginTop: '20px' } },
+          h('h2', {}, "About Section"),
+          h('h3', {}, data.about?.title),
+          h('p', {}, data.about?.desc)
+        ),
+
+        h('div', { style: { marginTop: '40px', fontSize: '12px', color: '#999' } }, 
+          "Note: This is a simplified preview. Layout may differ slightly from the live site.")
+      );
+    }
+  });
+
+  // Register the template for the 'en' file inside the 'settings' collection
+  CMS.registerPreviewTemplate("en", SitePreview);
+  
+  // Also register your CSS so the preview uses your site's fonts/colors
+  CMS.registerPreviewStyle("../css/style.css");
+</script>;
       }, 0);
     });
   </script>
