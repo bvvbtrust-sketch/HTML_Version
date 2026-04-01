@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let currentLang = 'en';
+    // 1. Initialize language from LocalStorage or default to 'en'
+    let currentLang = localStorage.getItem('preferredLang') || 'en';
     const langToggleBtn = document.getElementById('langToggle');
 
     // --- Async Language Switcher ---
-    // Modified to fetch external JSON files for Decap CMS compatibility
     async function updateLanguage(lang) {
         try {
             const response = await fetch(`js/${lang}.json`);
@@ -11,13 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const langData = await response.json();
 
             currentLang = lang;
-            langToggleBtn.textContent = lang === 'en' ? 'తెలుగు' : 'English';
+            // Save the selection for other pages
+            localStorage.setItem('preferredLang', lang); 
             
-            // Update font families based on language
+            // Update button text and HTML attributes
+            langToggleBtn.textContent = lang === 'en' ? 'తెలుగు' : 'English';
+            document.documentElement.setAttribute('lang', lang);
+
+            // Update font families and scaling classes
             document.body.style.fontFamily = lang === 'en' ? "'Montserrat', sans-serif" : "'Noto Serif Telugu', serif";
             
-            // Update language attributes and scaling
-            document.documentElement.setAttribute('lang', lang);
             if (lang === 'te') {
                 document.documentElement.classList.add('lang-te');
             } else {
@@ -28,9 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const keyPath = el.getAttribute('data-i18n');
                 const keys = keyPath.split('.');
-                let text = langData; // Start with the fetched JSON data
+                let text = langData; 
                 
-                // traverse the json object
                 keys.forEach(k => { if (text) text = text[k]; });
                 
                 if (text) {
@@ -46,8 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Initialize the page with the persistent language
+    updateLanguage(currentLang);
+
     langToggleBtn.addEventListener('click', () => {
-        updateLanguage(currentLang === 'en' ? 'te' : 'en');
+        const nextLang = currentLang === 'en' ? 'te' : 'en';
+        updateLanguage(nextLang);
         
         // Close mobile menu if open
         const hamburger = document.getElementById('hamburger');
@@ -58,7 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // --- Scroll Spying (Intersection Observer) ---
+    // --- The rest of your existing logic (Scroll Spying, Hamburger, Carousel, Lightbox) remains unchanged ---
+    
+    // --- Scroll Spying ---
     const navbar = document.getElementById('navbar');
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-links a');
@@ -85,19 +93,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', () => {
         if (navbar) {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            if (window.scrollY > 50) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
         }
         
         if (scrollToTopBtn) {
-            if (window.scrollY > 300) {
-                scrollToTopBtn.classList.add('show');
-            } else {
-                scrollToTopBtn.classList.remove('show');
-            }
+            if (window.scrollY > 300) scrollToTopBtn.classList.add('show');
+            else scrollToTopBtn.classList.remove('show');
         }
     });
 
@@ -129,10 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!slides.length) return;
         if (n >= slides.length) slideIndex = 0;
         if (n < 0) slideIndex = slides.length - 1;
-        
         slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
-        
         slides[slideIndex].classList.add('active');
         if (dots[slideIndex]) dots[slideIndex].classList.add('active');
     }
@@ -155,7 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (slides.length > 0) {
         showSlides(slideIndex);
         carouselInterval = setInterval(() => nextSlide(1), 4000);
-        
         const prevBtn = document.querySelector('.carousel-prev');
         const nextBtn = document.querySelector('.carousel-next');
         if (prevBtn) prevBtn.addEventListener('click', () => nextSlide(-1));
@@ -214,7 +213,4 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'ArrowRight') changeLightboxImage(1);
         });
     }
-
-    // Initialize with current language JSON
-    updateLanguage(currentLang);
 });
