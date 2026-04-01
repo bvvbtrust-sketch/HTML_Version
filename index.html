@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+        <script>
+        (function() {
+            const savedLang = localStorage.getItem('preferredLang') || 'en';
+            document.documentElement.setAttribute('lang', savedLang);
+            if (savedLang === 'te') {
+                document.documentElement.classList.add('lang-te');
+            }
+            window.persistedLang = savedLang;
+        })();
+    </script>
     <!-- Add this to your home page <head> -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <meta charset="UTF-8">
