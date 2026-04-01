@@ -2,25 +2,24 @@
 <html lang="en">
 <head>
     <head>
-    <script>
-        // 1. Immediately grab the saved language
-        (function() {
-            const savedLang = localStorage.getItem('preferredLang') || 'en';
-            
-            // 2. Force the HTML attribute so CSS selectors (lang-te) work instantly
-            document.documentElement.setAttribute('lang', savedLang);
-            
-            if (savedLang === 'te') {
-                document.documentElement.classList.add('lang-te');
-            }
-            
-            // 3. Optional: Prevent a "white flash" by setting the font early
-            document.addEventListener('DOMContentLoaded', () => {
-                document.body.style.fontFamily = (savedLang === 'en') ? 
-                    "'Montserrat', sans-serif" : "'Noto Serif Telugu', serif";
-            });
-        })();
-    </script>
+    <!-- CRITICAL: Apply language IMMEDIATELY before page renders -->
+<script>
+    (function() {
+        // Get the saved language preference (default to English)
+        const savedLang = localStorage.getItem('preferredLang') || 'en';
+        
+        // Apply to the HTML element immediately
+        document.documentElement.setAttribute('lang', savedLang);
+        
+        // Add the Telugu class if needed
+        if (savedLang === 'te') {
+            document.documentElement.classList.add('lang-te');
+        }
+        
+        // Store the current language for use in main.js
+        window.persistedLang = savedLang;
+    })();
+</script>
 });
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
